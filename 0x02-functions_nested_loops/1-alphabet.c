@@ -1,11 +1,12 @@
-#include <main.h>
+#include "main.h"
 
 /**
  * print_alphabet - prints lowercase alphabet
  *
  *Return: void
  */
-
+int main()
+{
 void print_alphabet(void)
 {
 	char letter = 'a';
@@ -16,4 +17,5 @@ void print_alphabet(void)
 		letter++;
 	}
 	_putchar('\n');
+}
 }
