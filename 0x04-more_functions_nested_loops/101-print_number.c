@@ -1,68 +1,36 @@
-#include <math.h>
 #include "main.h"
 
 /**
- * power - exponents
- * @base: base
- * @exp: exponent
- * Return: result (int)
- */
-
-int  power(int base, int exp)
-{
-	int i, num;
-
-	num = 1;
-	for (i = 0; i < exp; ++i)
-		num *= base;
-
-	return (num);
-}
-
-/**
- * print_number - prints an integer
- * @n: number to print
- * Return void
+ * print_number - print an integer, without using long, arrays, or pointers
+ * @n: number to be printed
  */
 
 void print_number(int n)
 {
-	int negative = 0;
-	int digit;
-	int divisor;
-	int begin = 0;
-	int place = 10;
+	unsigned int tens, digit, positive = n;
+	double t_beg = 1;
 
-	if (n < 0)
+	if (n == 0)
+		_putchar('0');
+	else
 	{
-		negative = 1;
-		n = n * -1;
-	}
-	while (place >= 0)
-	{
-		/*divisor = pow(10, place);*/
-		divisor = power(10, place);
-		digit = ((n / divisor) % 10);
-		if (digit == 0 && begin == 0)
+		if (n < 0)
 		{
-			place--;
+			positive = n * -1;
+			_putchar('-');
 		}
-		else if (digit != 0 && begin == 0)
+
+
+		while (t_beg <= positive)
+			t_beg *= 10;
+		tens = t_beg / 10;
+
+		while (tens >= 1)
 		{
-			begin = 1;
-			if (negative == 1)
-				_putchar('-');
-			_putchar('0' + digit);
-			place--;
+			digit = positive / tens;
+			_putchar(digit + '0');
+			positive = (positive - (tens * digit));
+			tens /= 10;
 		}
-		else
-		{
-			_putchar('0' + digit);
-			place--;
-		}
-	}
-	if (digit == 0 && divisor == 1)
-	{
-		_putchar(48);
 	}
 }
